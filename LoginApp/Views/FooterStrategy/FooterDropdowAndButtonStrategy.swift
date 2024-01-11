@@ -14,12 +14,11 @@ class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
     var validatorStrategy: FooterValidationStrategy?
     weak var parentVC: UIViewController?
     
-    func createView(parentVC: UIViewController?) -> UIView {
-        self.parentVC = parentVC
-        configConstraints()
-        return self
-    }
+    private var descriptionText: PassthroughSubject<String, Never>?
+    private var disableButton: PassthroughSubject<Bool, Never>?
+    private var continueButtonPressed: PassthroughSubject<Bool, Never>?
     
+
     required init(footerSection: AmountPickerModel.FooterSection?, validatorStrategy: FooterValidationStrategy?) {
         self.footerSection = footerSection
         self.validatorStrategy = validatorStrategy
@@ -35,6 +34,21 @@ class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func createView(parentVC: UIViewController?,
+                    descriptionText: PassthroughSubject<String, Never>,
+                    disableButton: PassthroughSubject<Bool, Never>,
+                    continueButtonPressed: PassthroughSubject<Bool, Never>) -> UIView {
+        
+        self.descriptionText = descriptionText
+        self.disableButton = disableButton
+        self.continueButtonPressed = continueButtonPressed
+        
+        
+        self.parentVC = parentVC
+        configConstraints()
+        return self
     }
     
     func configConstraints(){
