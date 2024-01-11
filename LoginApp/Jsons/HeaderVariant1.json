@@ -1,0 +1,43 @@
+{
+    "header_section": {
+        "strategy": "title-collector",
+        "title": {
+            "title": "Ingresa el monto",
+            "size": 25.0,
+        },
+        "collector": {
+            "name": "Ginebra López",
+            "bank": "Banco Santander",
+            "alias": "santa.rio.yo",
+            "avatar": null,
+            "initials": "GL"
+        }
+    },
+    
+    "amount_section": {
+        "strategy": "other",
+        "available_title": "Saldo disponible",
+        "warning_title": "Superó el límite diario, se agendará",
+        "error_title": "Supera el monto disponible",
+        "currency_symbol": "R$",
+        "default_amount": 0,
+        "amount": {
+            "available": 15817.48,
+            "min": 0.1,
+            "max": 200000
+        }
+    },
+    
+    "footer_section": {
+        "strategy": "dropdown-button",
+        "dropdown_options": [
+            "Hogar",
+            "Comida",
+            "Varios",
+            "Otro"
+        ],
+        "continue_title": "Continuar",
+        "dropdown_placeholder": "Elige una opción",
+        "description_textfield_title": null
+    }
+}
