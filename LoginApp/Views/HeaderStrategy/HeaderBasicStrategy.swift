@@ -26,6 +26,7 @@ class HeaderBasicStrategy: UIView, HeaderStrategy{
     required init(headerSection: AmountPickerModel.HeaderSection?,
                   validationStrategy: HeaderValidationStrategy?) {
         self.headerSection = headerSection
+        self.validationStrategy = validationStrategy
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false

@@ -19,6 +19,10 @@
 		8E1214582B4F900500848A99 /* HeaderBasicStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214572B4F900500848A99 /* HeaderBasicStrategy.swift */; };
 		8E1214592B4F923000848A99 /* HeaderVariant1.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E12144D2B4F8E7500848A99 /* HeaderVariant1.json */; };
 		8E1214602B4F94CB00848A99 /* HeaderValidationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E12145F2B4F94CB00848A99 /* HeaderValidationBasic.swift */; };
+		8E1214622B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214612B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift */; };
+		8E1214642B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214632B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift */; };
+		8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */; };
+		8E1214692B50A24E00848A99 /* FooterDropdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E1214682B50A24E00848A99 /* FooterDropdown.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		8E1214532B4F8F1E00848A99 /* AmountPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountPickerViewModel.swift; sourceTree = "<group>"; };
 		8E1214572B4F900500848A99 /* HeaderBasicStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBasicStrategy.swift; sourceTree = "<group>"; };
 		8E12145F2B4F94CB00848A99 /* HeaderValidationBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderValidationBasic.swift; sourceTree = "<group>"; };
+		8E1214612B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterDescriptionAndButtonStrategy.swift; sourceTree = "<group>"; };
+		8E1214632B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterDropdowAndButtonStrategy.swift; sourceTree = "<group>"; };
+		8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterValidationDropdownAndButton.swift; sourceTree = "<group>"; };
+		8E1214682B50A24E00848A99 /* FooterDropdown.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FooterDropdown.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8E12144D2B4F8E7500848A99 /* HeaderVariant1.json */,
+				8E1214682B50A24E00848A99 /* FooterDropdown.json */,
 			);
 			path = Jsons;
 			sourceTree = "<group>";
@@ -153,6 +162,9 @@
 		8E12145D2B4F931800848A99 /* FooterStrategy */ = {
 			isa = PBXGroup;
 			children = (
+				8E1214652B508F8C00848A99 /* Validations */,
+				8E1214612B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift */,
+				8E1214632B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift */,
 			);
 			path = FooterStrategy;
 			sourceTree = "<group>";
@@ -163,6 +175,14 @@
 				8E12145F2B4F94CB00848A99 /* HeaderValidationBasic.swift */,
 			);
 			path = Validator;
+			sourceTree = "<group>";
+		};
+		8E1214652B508F8C00848A99 /* Validations */ = {
+			isa = PBXGroup;
+			children = (
+				8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */,
+			);
+			path = Validations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +246,7 @@
 				8E1214412B4F837800848A99 /* LaunchScreen.storyboard in Resources */,
 				8E12143E2B4F837800848A99 /* Assets.xcassets in Resources */,
 				8E1214592B4F923000848A99 /* HeaderVariant1.json in Resources */,
+				8E1214692B50A24E00848A99 /* FooterDropdown.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,12 +257,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */,
 				8E1214512B4F8EB700848A99 /* AmountPickerProvider.swift in Sources */,
 				8E1214392B4F837600848A99 /* AmountViewController.swift in Sources */,
 				8E1214582B4F900500848A99 /* HeaderBasicStrategy.swift in Sources */,
+				8E1214642B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift in Sources */,
 				8E1214492B4F8C7A00848A99 /* AmountPickerModel.swift in Sources */,
 				8E1214542B4F8F1E00848A99 /* AmountPickerViewModel.swift in Sources */,
 				8E12144B2B4F8E4B00848A99 /* Helper.swift in Sources */,
+				8E1214622B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift in Sources */,
 				8E1214352B4F837600848A99 /* AppDelegate.swift in Sources */,
 				8E1214372B4F837600848A99 /* SceneDelegate.swift in Sources */,
 				8E1214602B4F94CB00848A99 /* HeaderValidationBasic.swift in Sources */,

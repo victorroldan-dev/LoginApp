@@ -29,10 +29,15 @@
     },
     
     "footer_section": {
-        "strategy": "description-button",
-        "dropdown_options": null,
+        "strategy": "dropdown-button",
+        "dropdown_options": [
+            "Hogar",
+            "Comida",
+            "Varios",
+            "Otro"
+        ],
         "continue_title": "Continuar",
-        "dropdown_placeholder": null,
-        "description_textfield_title": "Escribe descripción"
+        "dropdown_placeholder": "Elige una opción",
+        "description_textfield_title": null
     }
 }

@@ -11,6 +11,7 @@ import Combine
 class AmountPickerViewModel{
     var reload = PassthroughSubject<Void, Never>()
     var headerStrategy: HeaderStrategy?
+    var footerStrategy: FooterViewStrategy?
     
     private var provider: AmountPickerProviderProtocol
     
@@ -27,6 +28,7 @@ class AmountPickerViewModel{
         switch result {
         case .success(let response):
             strategyForHeaderView(header: response.headerSection)
+            strategyForFooterView(footer: response.footerSection)
             reload.send()
             
         case .failure(let error):
@@ -42,6 +44,30 @@ class AmountPickerViewModel{
             headerStrategy = HeaderBasicStrategy(
                 headerSection: header,
                 validationStrategy: HeaderValidationBasic())
+        default:
+            print("no strategies")
+        }
+    }
+    
+    func strategyForFooterView(footer: AmountPickerModel.FooterSection?){
+        guard let footer else { return }
+        
+        //switch
+        switch StrategiesName(rawValue: footer.strategy ?? ""){
+            
+        case .dropdownButton:
+            footerStrategy = FooterDropdowAndButtonStrategy(footerSection: footer,
+                                                            validatorStrategy: FooterValidationDropdownAndButton())
+            
+        case .descriptionButton:
+            footerStrategy = FooterDescriptionAndButtonStrategy(footerSection: footer,
+                                                                validatorStrategy: FooterValidationDropdownAndButton())
+            /*
+        case .footerOnlyButton:
+            footerStrategy = FooterOnlyButton(footerSection: footer,
+                                                                validatorStrategy: FooterValidationOnlyButton())
+             */
+            
         default:
             print("no strategies")
         }
