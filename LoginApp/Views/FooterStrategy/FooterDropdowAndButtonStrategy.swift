@@ -14,12 +14,13 @@ class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
     var validatorStrategy: FooterValidationStrategy?
     weak var parentVC: UIViewController?
     
-    private var descriptionText: PassthroughSubject<String, Never>?
-    private var disableButton: PassthroughSubject<Bool, Never>?
-    private var continueButtonPressed: PassthroughSubject<Bool, Never>?
+    private var descriptionText: CurrentValueSubject<String, Never>?
+    private var disableButton: CurrentValueSubject<Bool, Never>?
+    private var continueButtonPressed: CurrentValueSubject<Bool, Never>?
     
 
-    required init(footerSection: AmountPickerModel.FooterSection?, validatorStrategy: FooterValidationStrategy?) {
+    required init(footerSection: AmountPickerModel.FooterSection?, 
+                  validatorStrategy: FooterValidationStrategy?) {
         self.footerSection = footerSection
         self.validatorStrategy = validatorStrategy
         super.init(frame: .zero)
@@ -36,15 +37,12 @@ class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
         super.init(coder: aDecoder)
     }
     
-    func createView(parentVC: UIViewController?,
-                    descriptionText: PassthroughSubject<String, Never>,
-                    disableButton: PassthroughSubject<Bool, Never>,
-                    continueButtonPressed: PassthroughSubject<Bool, Never>) -> UIView {
+    func createView(parentVC: UIViewController?, 
+                    stateManager: StateManager) -> UIView {
         
-        self.descriptionText = descriptionText
-        self.disableButton = disableButton
-        self.continueButtonPressed = continueButtonPressed
-        
+        self.descriptionText = stateManager.descriptionText
+        self.disableButton = stateManager.interationEnabledButton
+        self.continueButtonPressed = stateManager.continueButtonPressed
         
         self.parentVC = parentVC
         configConstraints()

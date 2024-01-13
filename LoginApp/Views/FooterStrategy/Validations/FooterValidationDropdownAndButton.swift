@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import Combine
+
+protocol FooterValidationStrategy {
+    func isValid(stateManager: StateManager) -> Bool
+}
 
 class FooterValidationDropdownAndButton: FooterValidationStrategy{
-    func isValid() -> Bool {
+    func isValid(stateManager: StateManager) -> Bool {
         true
     }
 }

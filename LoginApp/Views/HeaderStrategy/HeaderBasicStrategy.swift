@@ -10,23 +10,23 @@ import UIKit
 
 protocol HeaderStrategy: UIView {
     var headerSection: AmountPickerModel.HeaderSection? {get set}
-    var validationStrategy: HeaderValidationStrategy? {get set}
+    var validatorStrategy: HeaderValidationStrategy? {get set}
     func createView(parentVC: UIViewController?) -> UIView
     var parentVC: UIViewController? {get set}
     func configConstraints()
     init(headerSection: AmountPickerModel.HeaderSection?,
-         validationStrategy: HeaderValidationStrategy?)
+         validatorStrategy: HeaderValidationStrategy?)
 }
 
 class HeaderBasicStrategy: UIView, HeaderStrategy{
     weak var parentVC: UIViewController?
-    var validationStrategy: HeaderValidationStrategy?
+    var validatorStrategy: HeaderValidationStrategy?
     var headerSection: AmountPickerModel.HeaderSection?
     
     required init(headerSection: AmountPickerModel.HeaderSection?,
-                  validationStrategy: HeaderValidationStrategy?) {
+                  validatorStrategy: HeaderValidationStrategy?) {
         self.headerSection = headerSection
-        self.validationStrategy = validationStrategy
+        self.validatorStrategy = validatorStrategy
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false

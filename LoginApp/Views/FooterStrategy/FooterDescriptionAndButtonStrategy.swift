@@ -9,19 +9,12 @@ import Foundation
 import UIKit
 import Combine
 
-protocol FooterValidationStrategy {
-    func isValid(/*stateManager: StateManager*/) -> Bool
-}
-
 protocol FooterViewStrategy: UIView {
     var footerSection: AmountPickerModel.FooterSection? {get set}
     var validatorStrategy: FooterValidationStrategy? {get set}
     var parentVC: UIViewController? {get set}
     
-    func createView(parentVC: UIViewController?, 
-                    descriptionText: PassthroughSubject<String, Never>,
-                    disableButton: PassthroughSubject<Bool, Never>,
-                    continueButtonPressed: PassthroughSubject<Bool, Never>) -> UIView
+    func createView(parentVC: UIViewController?, stateManager: StateManager) -> UIView
     func configConstraints()
     
     init(footerSection: AmountPickerModel.FooterSection?, validatorStrategy: FooterValidationStrategy?)
@@ -32,9 +25,13 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
     var validatorStrategy: FooterValidationStrategy?
     weak var parentVC: UIViewController?
     
-    private var descriptionText: PassthroughSubject<String, Never>?
-    private var disableButton: PassthroughSubject<Bool, Never>?
-    private var continueButtonPressed: PassthroughSubject<Bool, Never>?
+    private var descriptionText: CurrentValueSubject<String, Never>?
+    private var interationEnabledButton: CurrentValueSubject<Bool, Never>?
+    private var continueButtonPressed: CurrentValueSubject<Bool, Never>?
+    
+    private var other: CurrentValueSubject<Bool, Never>?
+    
+    private var anyCancellable: [AnyCancellable] = []
     
     lazy private var footerView: UIStackView = {
         let view = UIStackView()
@@ -56,12 +53,12 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
     }()
     
     lazy private var continueButton: UIButton = {
-        let tf = UIButton(type: .roundedRect)
-        tf.setTitleColor(.white, for: .normal)
-        tf.setTitleColor(.gray, for: .focused)
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.addTarget(self, action: #selector(onButtonPressed(button:)), for: .touchUpInside)
-        return tf
+        let button = UIButton(type: .roundedRect)
+        button.setTitleColor(.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setBackgroundImage(UIImage(color: UIColor.gray), for: .disabled)
+        button.addTarget(self, action: #selector(onButtonPressed(button:)), for: .touchUpInside)
+        return button
     }()
     
     required init(footerSection: AmountPickerModel.FooterSection?,
@@ -82,31 +79,39 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
         super.init(coder: aDecoder)
     }
     
-    func createView(parentVC: UIViewController?, 
-                    descriptionText: PassthroughSubject<String, Never>,
-                    disableButton: PassthroughSubject<Bool, Never>,
-                    continueButtonPressed: PassthroughSubject<Bool, Never>) -> UIView {
+    func createView(parentVC: UIViewController?, stateManager: StateManager) -> UIView {
         
-        self.descriptionText = descriptionText
-        self.disableButton = disableButton
-        self.continueButtonPressed = continueButtonPressed
+        self.descriptionText = stateManager.descriptionText
+        self.interationEnabledButton = stateManager.interationEnabledButton
+        self.continueButtonPressed = stateManager.continueButtonPressed
+        
         self.parentVC = parentVC
-        
+        subscriptions()
         configViews()
         addConstraintToFooterView()
         configConstraints()
+        
         return self
+    }
+    
+    private func subscriptions(){
+        interationEnabledButton?.sink{[weak self] enabled in
+            guard let self else { return }
+            print("default sate: \(enabled)")
+            self.continueButton.isUserInteractionEnabled = enabled
+            let bgColor: UIColor = (enabled) ? .blue : .gray
+            continueButton.backgroundColor = bgColor
+        }.store(in: &anyCancellable)
     }
     
     private func configViews(){
         continueButton.setTitle(footerSection?.continueTitle, for: .normal)
-        continueButton.backgroundColor = .blue
         descriptionTextField.placeholder = "Descripción"
-
     }
     
     @objc func onChangeDescription(text: UITextField){
         guard let text = text.text else {return}
+        print("asignando: \(text)")
         descriptionText?.send(text)
     }
     
@@ -139,6 +144,17 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
             heightAnchor.constraint(equalToConstant: 45),
         ])
     }
-    
-    
+}
+
+extension UIImage {
+    convenience init(color: UIColor) {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        self.init(cgImage: image.cgImage!)
+    }
 }

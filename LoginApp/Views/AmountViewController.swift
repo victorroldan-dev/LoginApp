@@ -2,9 +2,33 @@ import UIKit
 import Combine
 
 class StateManager{
-    var descriptionText = PassthroughSubject<String, Never>()
-    var disableButton = PassthroughSubject<Bool, Never>()
-    var continueButtonPressed = PassthroughSubject<Bool, Never>()
+    var descriptionText = CurrentValueSubject<String, Never>("")
+    var interationEnabledButton = CurrentValueSubject<Bool, Never>(false)
+    var continueButtonPressed = CurrentValueSubject<Bool, Never>(false)
+    
+    var didChangeValue = CurrentValueSubject<Date, Never>(Date())
+    var anyCancellable: [AnyCancellable] = []
+    
+    init(){
+        //Modificar a CombineLatest cuando tenga mas de uno.
+        descriptionText.sink {[weak self] text in
+            self?.didChangeValue.send(Date())
+        }.store(in: &anyCancellable)
+        
+        /*
+        Publishers.CombineLatest3($description, $amount, $continueButtonPressed)
+            .sink { description, amount, continueButton in
+                self.didChangeValue = .now
+                
+                print("description: \(description), amount: \(amount), date: \(self.didChangeValue)")
+                
+                if continueButton {
+                    print("redireccionar a deeplink")
+                }
+                
+            }.store(in: &cancellables)
+         */
+    }
 }
 
 class AmountViewController: BaseViewController {
@@ -12,12 +36,6 @@ class AmountViewController: BaseViewController {
     var stateManager = StateManager()
     var topView: UIView?
     var bottomView: UIView?
-    
-    /*
-    var descriptionText = PassthroughSubject<String, Never>()
-    var disableButton = PassthroughSubject<Bool, Never>()
-    var continueButtonPressed = PassthroughSubject<Bool, Never>()
-    */
     
     var centerView: UIView = {
         let view = UIView()
@@ -35,6 +53,14 @@ class AmountViewController: BaseViewController {
         Task{
             await viewModel.getAmountPicker()
         }
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyaboard))
+        gesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(gesture)
+    }
+    
+    @objc func dismissKeyaboard(){
+        view.endEditing(true)
     }
         
     func subscriptions(){
@@ -43,35 +69,33 @@ class AmountViewController: BaseViewController {
             self.configViews()
         }.store(in: &anyCancellable)
         
-        stateManager.descriptionText.sink {[weak self] text in
-            guard let self else {return}
-            print("description: \(text)")
+        stateManager.didChangeValue.sink {[weak self] date in
+            guard let self else { return }
+            self.validationView()
         }.store(in: &anyCancellable)
         
-        stateManager.continueButtonPressed.sink {[weak self] onPressed in
-            guard let self else {return}
-            print("onPressed: \(onPressed)")
+        stateManager.continueButtonPressed.sink {[weak self] pressed in
+            guard let self else { return }
+            if pressed {
+                print("continueButtonPressed: \(pressed)")
+            }
         }.store(in: &anyCancellable)
+
+    }
+    
+    func validationView(){
+        let isValidFooter = viewModel.footerStrategy?.validatorStrategy?.isValid(stateManager: stateManager) ?? false
+        let isValidHeader = viewModel.headerStrategy?.validatorStrategy?.isValid(stateManager: stateManager) ?? false
         
-        stateManager.disableButton.sink {[weak self] isDisabled in
-            guard let self else {return}
-            print("isDisabled: \(isDisabled)")
-        }.store(in: &anyCancellable)
+        stateManager.interationEnabledButton.send((isValidFooter && isValidHeader))
     }
     
     func configViews(){
         topView = viewModel.headerStrategy?.createView(parentVC: self) ?? UIView()
-
         view.addSubview(centerView)
-        
-        bottomView = viewModel.footerStrategy?.createView(parentVC: self,
-                                                          descriptionText: stateManager.descriptionText,
-                                                          disableButton: stateManager.disableButton,
-                                                          continueButtonPressed: stateManager.continueButtonPressed) ?? UIView()
-        
+        bottomView = viewModel.footerStrategy?.createView(parentVC: self, 
+                                                          stateManager: stateManager) ?? UIView()
         configConstratins()
-        
-        
     }
     
     func configConstratins(){

@@ -43,7 +43,8 @@ class AmountPickerViewModel{
         case .titleCollector:
             headerStrategy = HeaderBasicStrategy(
                 headerSection: header,
-                validationStrategy: HeaderValidationBasic())
+                validatorStrategy: HeaderValidationBasic())
+        
         default:
             print("no strategies")
         }
@@ -61,7 +62,7 @@ class AmountPickerViewModel{
             
         case .descriptionButton:
             footerStrategy = FooterDescriptionAndButtonStrategy(footerSection: footer,
-                                                                validatorStrategy: FooterValidationDropdownAndButton())
+                                                                validatorStrategy: FooterValidationDescriptionAndButton())
             /*
         case .footerOnlyButton:
             footerStrategy = FooterOnlyButton(footerSection: footer,

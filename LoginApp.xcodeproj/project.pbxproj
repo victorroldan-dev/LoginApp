@@ -24,6 +24,7 @@
 		8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */; };
 		8E1214692B50A24E00848A99 /* FooterDropdown.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E1214682B50A24E00848A99 /* FooterDropdown.json */; };
 		8E12146B2B50ADC200848A99 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E12146A2B50ADC200848A99 /* BaseViewController.swift */; };
+		8E12146D2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E12146C2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterValidationDropdownAndButton.swift; sourceTree = "<group>"; };
 		8E1214682B50A24E00848A99 /* FooterDropdown.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FooterDropdown.json; sourceTree = "<group>"; };
 		8E12146A2B50ADC200848A99 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8E12146C2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterValidationDescriptionAndButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				8E1214662B508F9D00848A99 /* FooterValidationDropdownAndButton.swift */,
+				8E12146C2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift */,
 			);
 			path = Validations;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			files = (
 				8E12146B2B50ADC200848A99 /* BaseViewController.swift in Sources */,
 				8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */,
+				8E12146D2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift in Sources */,
 				8E1214512B4F8EB700848A99 /* AmountPickerProvider.swift in Sources */,
 				8E1214392B4F837600848A99 /* AmountViewController.swift in Sources */,
 				8E1214582B4F900500848A99 /* HeaderBasicStrategy.swift in Sources */,

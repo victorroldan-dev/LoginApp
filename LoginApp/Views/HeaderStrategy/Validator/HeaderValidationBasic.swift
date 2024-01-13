@@ -8,11 +8,11 @@
 import Foundation
 
 protocol HeaderValidationStrategy {
-    func isValid() -> Bool
+    func isValid(stateManager: StateManager) -> Bool
 }
 
 class HeaderValidationBasic: HeaderValidationStrategy{
-    func isValid() -> Bool {
+    func isValid(stateManager: StateManager) -> Bool {
         return true
     }
 }
