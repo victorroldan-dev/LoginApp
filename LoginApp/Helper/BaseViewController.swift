@@ -16,9 +16,9 @@ class BaseViewController: UIViewController {
     }
     
     @objc func showKeyboard(notification: NSNotification) {
-        if let tecladoSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             UIView.animate(withDuration: 0.3) {
-                self.view.frame.origin.y = -tecladoSize.height
+                self.view.frame.origin.y = -keyboardSize.height
             }
         }
     }

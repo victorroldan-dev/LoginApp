@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 class AmountPickerViewModel{
-    var reload = PassthroughSubject<Void, Never>()
     var headerStrategy: HeaderStrategy?
     var footerStrategy: FooterViewStrategy?
+    var amountStrategy: AmountStrategy?
     
     private var provider: AmountPickerProviderProtocol
     
@@ -20,20 +20,24 @@ class AmountPickerViewModel{
     }
     
     @MainActor
-    func getAmountPicker() async {
-        
-        let result = await provider.getAmountPicker(jsonName: JsonName.HeaderVariant1.rawValue)
-        
-        //defer { loading = false }
-        switch result {
-        case .success(let response):
-            strategyForHeaderView(header: response.headerSection)
-            strategyForFooterView(footer: response.footerSection)
-            reload.send()
-            
-        case .failure(let error):
-            print("error: \(error.localizedDescription)")
+    func getAmountPicker() -> AnyPublisher<Void, Never> {
+        Future<Void, Never> { promise in
+            Task.init {
+                let result = await self.provider.getAmountPicker(jsonName: JsonName.HeaderVariant1.rawValue)
+                
+                switch result {
+                case .success(let response):
+                    self.strategyForHeaderView(header: response.headerSection)
+                    self.strategyForFooterView(footer: response.footerSection)
+                    self.strategyForAmountView(amountSection: response.amountSection)
+                    
+                case .failure(let error):
+                    print("error: \(error.localizedDescription)")
+                }
+                promise(.success(()))
+            }
         }
+        .eraseToAnyPublisher()
     }
     
     func strategyForHeaderView(header: AmountPickerModel.HeaderSection?){
@@ -49,6 +53,19 @@ class AmountPickerViewModel{
             print("no strategies")
         }
     }
+    
+    func strategyForAmountView(amountSection: AmountPickerModel.AmountSection?){
+        guard let amountSection else { return }
+        
+        switch StrategiesName(rawValue: amountSection.strategy ?? "") {
+        case .basic:
+            amountStrategy = AmountBasicStrategy(amountSection: amountSection,
+                                                 validatorStrategy: AmountValidationBasic(amountSection: amountSection))
+        default:
+            print("no strategies")
+        }
+    }
+    
     
     func strategyForFooterView(footer: AmountPickerModel.FooterSection?){
         guard let footer else { return }

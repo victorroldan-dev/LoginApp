@@ -45,11 +45,11 @@ class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
         self.continueButtonPressed = stateManager.continueButtonPressed
         
         self.parentVC = parentVC
-        configConstraints()
+        configParentConstraints()
         return self
     }
     
-    func configConstraints(){
+    func configParentConstraints(){
         guard let parentVC else { return }
         parentVC.view.addSubview(self)
         

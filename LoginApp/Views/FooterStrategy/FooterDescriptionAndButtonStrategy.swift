@@ -15,7 +15,7 @@ protocol FooterViewStrategy: UIView {
     var parentVC: UIViewController? {get set}
     
     func createView(parentVC: UIViewController?, stateManager: StateManager) -> UIView
-    func configConstraints()
+    func configParentConstraints()
     
     init(footerSection: AmountPickerModel.FooterSection?, validatorStrategy: FooterValidationStrategy?)
 }
@@ -89,7 +89,7 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
         subscriptions()
         configViews()
         addConstraintToFooterView()
-        configConstraints()
+        configParentConstraints()
         
         return self
     }
@@ -125,7 +125,7 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
         ])
     }
     
-    func configConstraints(){
+    func configParentConstraints(){
         guard let parentVC else { return }
         addSubview(footerView)
         parentVC.view.addSubview(self)

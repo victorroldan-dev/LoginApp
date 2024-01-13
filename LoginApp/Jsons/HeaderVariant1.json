@@ -15,7 +15,7 @@
     },
     
     "amount_section": {
-        "strategy": "other",
+        "strategy": "basic",
         "available_title": "Saldo disponible",
         "warning_title": "Superó el límite diario, se agendará",
         "error_title": "Supera el monto disponible",
