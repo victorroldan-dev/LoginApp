@@ -90,8 +90,7 @@ class AmountBasicStrategy: UIView, AmountStrategy {
     @objc func onChangeAmount(text: UITextField){
         guard let text = text.text else {return}
         showValidationMessge(text: text)
-        let newTitle = (amountSection?.currencySymbol ?? "") + " " + text
-        amountButton.setTitle(newTitle, for: .normal)
+        amountButton.setTitle(getAmountTitle(text: text), for: .normal)
         
         //This amount must be at the end of conditions
         amountTextFieldText?.send(text)
@@ -123,12 +122,16 @@ class AmountBasicStrategy: UIView, AmountStrategy {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .clear
         
-        let newTitle = (amountSection?.currencySymbol ?? "") + " " + "0.0"
-        amountButton.setTitle(newTitle, for: .normal)
+        amountButton.setTitle(getAmountTitle(), for: .normal)
         showValidationMessge(text: "0.0")
         
         amountButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
         amountButton.titleLabel?.textAlignment = .center
+    }
+    
+    private func getAmountTitle(text: String? = nil) -> String{
+        let newTitle = (amountSection?.currencySymbol ?? "") + " " + (text ?? "0.0")
+        return newTitle
     }
     
     func configLocalConstraints(){
