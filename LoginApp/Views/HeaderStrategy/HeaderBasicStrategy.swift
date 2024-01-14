@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 protocol HeaderStrategy: UIView {
-    var headerSection: AmountPickerModel.HeaderSection? {get set}
-    var validatorStrategy: HeaderValidationStrategy? {get set}
+    var headerSection: AmountPickerModel.HeaderSection? {get}
+    var validatorStrategy: HeaderValidationStrategy? {get}
+    var parentVC: UIViewController? {get}
     func createView(parentVC: UIViewController?) -> UIView
-    var parentVC: UIViewController? {get set}
     func configConstraints()
     init(headerSection: AmountPickerModel.HeaderSection?,
          validatorStrategy: HeaderValidationStrategy?)
@@ -23,84 +23,60 @@ class HeaderBasicStrategy: UIView, HeaderStrategy{
     var validatorStrategy: HeaderValidationStrategy?
     var headerSection: AmountPickerModel.HeaderSection?
     
-    private var headerStackView: UIStackView = {
-        let view = UIStackView()
+    private var headerStackView: UIStackView = .view { view in
         view.axis = .vertical
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.spacing = 30
-        return view
-    }()
+    }
     
-    lazy private var collectorInfoView: UIStackView = {
-        let view = UIStackView()
+    lazy private var collectorInfoView: UIStackView = .view { view in
         view.axis = .vertical
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.addArrangedSubview(userNameLabel)
         view.addArrangedSubview(bankNameLabel)
         view.addArrangedSubview(aliasLabel)
         view.spacing = 1
         view.distribution = .fillEqually
-        return view
-    }()
+    }
     
-    lazy private var collectorView: UIStackView = {
-        let view = UIStackView()
+    lazy private var collectorView: UIStackView = .view { view in
         view.axis = .horizontal
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.addArrangedSubview(circleView)
         view.addArrangedSubview(collectorInfoView)
         view.spacing = 5
         view.distribution = .fill
-        return view
-    }()
+    }
     
-    var circleView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+    var circleView: UIView = .view { view in
         view.layer.cornerRadius = 20
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.gray.cgColor
-        return view
-    }()
+    }
     
-    private var titleLabel: UILabel = {
-        let label = UILabel()
+    private var titleLabel: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .left
         label.numberOfLines = 1
-        return label
-    }()
+    }
     
-    private var userNameLabel: UILabel = {
-        let label = UILabel()
+    private var userNameLabel: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
         label.textAlignment = .left
-        return label
-    }()
+    }
     
-    private var bankNameLabel: UILabel = {
-        let label = UILabel()
+    private var bankNameLabel: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .left
-        return label
-    }()
+    }
     
-    private var aliasLabel: UILabel = {
-        let label = UILabel()
+    private var aliasLabel: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    }
     
-    private var initials: UILabel = {
-        let label = UILabel()
+    private var initials: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = .left
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    }
     
     required init(headerSection: AmountPickerModel.HeaderSection?,
                   validatorStrategy: HeaderValidationStrategy?) {
@@ -151,8 +127,6 @@ class HeaderBasicStrategy: UIView, HeaderStrategy{
     private func hasTitle() -> Bool {
         return (headerSection?.title != nil)
     }
-    
-    
 }
 
 extension HeaderBasicStrategy{

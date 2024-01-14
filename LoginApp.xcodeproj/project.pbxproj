@@ -27,6 +27,8 @@
 		8E12146D2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E12146C2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift */; };
 		8E12146F2B53213D00848A99 /* AmountBasicStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E12146E2B53213D00848A99 /* AmountBasicStrategy.swift */; };
 		8E1214722B53217B00848A99 /* AmountValidationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214712B53217B00848A99 /* AmountValidationBasic.swift */; };
+		8E1214742B54407600848A99 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214732B54407600848A99 /* StateManager.swift */; };
+		8E1214762B54430400848A99 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214752B54430400848A99 /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		8E12146C2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterValidationDescriptionAndButton.swift; sourceTree = "<group>"; };
 		8E12146E2B53213D00848A99 /* AmountBasicStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountBasicStrategy.swift; sourceTree = "<group>"; };
 		8E1214712B53217B00848A99 /* AmountValidationBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountValidationBasic.swift; sourceTree = "<group>"; };
+		8E1214732B54407600848A99 /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
+		8E1214752B54430400848A99 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 				8E12145D2B4F931800848A99 /* FooterStrategy */,
 				8E12145C2B4F930700848A99 /* AmountStrategy */,
 				8E1214562B4F8FF300848A99 /* HeaderStrategy */,
+				8E1214732B54407600848A99 /* StateManager.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			children = (
 				8E12144A2B4F8E4B00848A99 /* Helper.swift */,
 				8E12146A2B50ADC200848A99 /* BaseViewController.swift */,
+				8E1214752B54430400848A99 /* View+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -282,6 +288,7 @@
 				8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */,
 				8E12146D2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift in Sources */,
 				8E1214512B4F8EB700848A99 /* AmountPickerProvider.swift in Sources */,
+				8E1214742B54407600848A99 /* StateManager.swift in Sources */,
 				8E1214392B4F837600848A99 /* AmountViewController.swift in Sources */,
 				8E1214582B4F900500848A99 /* HeaderBasicStrategy.swift in Sources */,
 				8E1214722B53217B00848A99 /* AmountValidationBasic.swift in Sources */,
@@ -292,6 +299,7 @@
 				8E1214622B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift in Sources */,
 				8E1214352B4F837600848A99 /* AppDelegate.swift in Sources */,
 				8E1214372B4F837600848A99 /* SceneDelegate.swift in Sources */,
+				8E1214762B54430400848A99 /* View+Extension.swift in Sources */,
 				8E1214602B4F94CB00848A99 /* HeaderValidationBasic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,25 +1,6 @@
 import UIKit
 import Combine
 
-class StateManager{
-    var descriptionText = CurrentValueSubject<String, Never>("")
-    var interationEnabledButton = CurrentValueSubject<Bool, Never>(false)
-    var continueButtonPressed = CurrentValueSubject<Bool, Never>(false)
-    
-    var didChangeValue = CurrentValueSubject<Date, Never>(Date())
-    var anyCancellable: [AnyCancellable] = []
-    
-    //Amount Section
-    var amountTextFieldText = CurrentValueSubject<String, Never>("")
-    
-    init(){
-        Publishers.CombineLatest(descriptionText, amountTextFieldText)
-            .sink {[weak self] description, amount  in
-                self?.didChangeValue.send(Date())
-            }.store(in: &anyCancellable)
-    }
-}
-
 class AmountViewController: BaseViewController {
     var viewModel = AmountPickerViewModel()
     var stateManager = StateManager()
