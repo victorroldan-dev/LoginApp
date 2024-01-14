@@ -14,6 +14,9 @@ protocol FooterValidationStrategy {
 
 class FooterValidationDropdownAndButton: FooterValidationStrategy{
     func isValid(stateManager: StateManager) -> Bool {
-        true
+        if stateManager.descriptionText.value.isEmpty{
+            return false
+        }
+        return true
     }
 }

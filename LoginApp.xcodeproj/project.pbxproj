@@ -29,6 +29,7 @@
 		8E1214722B53217B00848A99 /* AmountValidationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214712B53217B00848A99 /* AmountValidationBasic.swift */; };
 		8E1214742B54407600848A99 /* StateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214732B54407600848A99 /* StateManager.swift */; };
 		8E1214762B54430400848A99 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214752B54430400848A99 /* View+Extension.swift */; };
+		8E1214792B544ABD00848A99 /* DropdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1214782B544ABD00848A99 /* DropdownViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		8E1214712B53217B00848A99 /* AmountValidationBasic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountValidationBasic.swift; sourceTree = "<group>"; };
 		8E1214732B54407600848A99 /* StateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateManager.swift; sourceTree = "<group>"; };
 		8E1214752B54430400848A99 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		8E1214782B544ABD00848A99 /* DropdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				8E1214652B508F8C00848A99 /* Validations */,
 				8E1214612B508F7400848A99 /* FooterDescriptionAndButtonStrategy.swift */,
 				8E1214632B508F8600848A99 /* FooterDropdowAndButtonStrategy.swift */,
+				8E1214782B544ABD00848A99 /* DropdownViewController.swift */,
 			);
 			path = FooterStrategy;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E12146F2B53213D00848A99 /* AmountBasicStrategy.swift in Sources */,
+				8E1214792B544ABD00848A99 /* DropdownViewController.swift in Sources */,
 				8E12146B2B50ADC200848A99 /* BaseViewController.swift in Sources */,
 				8E1214672B508F9D00848A99 /* FooterValidationDropdownAndButton.swift in Sources */,
 				8E12146D2B530C8C00848A99 /* FooterValidationDescriptionAndButton.swift in Sources */,

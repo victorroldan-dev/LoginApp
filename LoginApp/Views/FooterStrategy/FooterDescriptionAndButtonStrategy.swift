@@ -28,38 +28,29 @@ class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
     private var descriptionText: CurrentValueSubject<String, Never>?
     private var interationEnabledButton: CurrentValueSubject<Bool, Never>?
     private var continueButtonPressed: CurrentValueSubject<Bool, Never>?
-    
-    private var other: CurrentValueSubject<Bool, Never>?
-    
     private var anyCancellable: [AnyCancellable] = []
     
-    lazy private var footerView: UIStackView = {
-        let view = UIStackView()
+    lazy private var footerView: UIStackView = .view { view in
         view.axis = .horizontal
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addArrangedSubview(descriptionTextField)
         view.addArrangedSubview(continueButton)
         view.spacing = 10
-        return view
-    }()
+    }
     
-    lazy private var descriptionTextField: UITextField = {
-        let tf = UITextField()
-        tf.borderStyle = .roundedRect
-        tf.backgroundColor = .white
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.addTarget(self, action: #selector(onChangeDescription(text:)), for: .editingChanged)
-        return tf
-    }()
+    lazy private var descriptionTextField: UITextField = .view { textfield in
+        textfield.borderStyle = .roundedRect
+        textfield.backgroundColor = .white
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.addTarget(self, action: #selector(onChangeDescription(text:)), for: .editingChanged)
+    }
     
-    lazy private var continueButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
+    lazy private var continueButton: UIButton = .view { button in
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(color: UIColor.gray), for: .disabled)
         button.addTarget(self, action: #selector(onButtonPressed(button:)), for: .touchUpInside)
-        return button
-    }()
+    }
     
     required init(footerSection: AmountPickerModel.FooterSection?,
                   validatorStrategy: FooterValidationStrategy?) {

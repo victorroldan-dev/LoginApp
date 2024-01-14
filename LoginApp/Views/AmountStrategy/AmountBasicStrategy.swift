@@ -33,42 +33,34 @@ class AmountBasicStrategy: UIView, AmountStrategy {
     
     private var amountTextFieldText: CurrentValueSubject<String, Never>?
     
-    lazy private var amountStackView: UIStackView = {
-        let view = UIStackView()
+    lazy private var amountStackView: UIStackView = .view { view in
         view.axis = .vertical
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addArrangedSubview(amountTextField)
         view.addArrangedSubview(amountButton)
         view.addArrangedSubview(validationLabel)
         view.spacing = 1
-        return view
-    }()
+    }
     
-    lazy private var amountTextField: UITextField = {
-        let textfield = UITextField()
+    lazy private var amountTextField: UITextField = .view { textfield in
         textfield.borderStyle = .roundedRect
         textfield.backgroundColor = .orange.withAlphaComponent(0.5)
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.addTarget(self, action: #selector(onChangeAmount(text:)), for: .editingChanged)
         textfield.keyboardType = .numberPad
         textfield.isHidden = true
-        return textfield
-    }()
+    }
     
-    lazy private var amountButton: UIButton = {
-        let button = UIButton(type: .roundedRect)
+    lazy private var amountButton: UIButton = .view { button in
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(onAmountButtonPressed(button:)), for: .touchUpInside)
-        return button
-    }()
+    }
     
-    lazy private var validationLabel: UILabel = {
-        let label = UILabel()
+    private var validationLabel: UILabel = .view { label in
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
-        return label
-    }()
+    }
     
     required init(amountSection: AmountPickerModel.AmountSection? = nil,
                   validatorStrategy: AmountValidationStrategy? = nil) {

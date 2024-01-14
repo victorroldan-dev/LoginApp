@@ -23,7 +23,7 @@ class AmountPickerViewModel{
     func getAmountPicker() -> AnyPublisher<Void, Never> {
         Future<Void, Never> { promise in
             Task.init {
-                let result = await self.provider.getAmountPicker(jsonName: JsonName.HeaderVariant1.rawValue)
+                let result = await self.provider.getAmountPicker(jsonName: JsonName.FooterDropdown.rawValue)
                 
                 switch result {
                 case .success(let response):
