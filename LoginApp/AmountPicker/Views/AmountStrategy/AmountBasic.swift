@@ -1,5 +1,5 @@
 //
-//  AmountBasicStrategy.swift
+//  AmountBasic.swift
 //  LoginApp
 //
 //  Created by Victor Roldan on 13/01/24.
@@ -26,7 +26,7 @@ protocol AmountStrategy: UIView {
     init(amountSection: AmountPickerModel.AmountSection?, validatorStrategy: AmountValidationStrategy?)
 }
 
-class AmountBasicStrategy: UIView, AmountStrategy {
+class AmountBasic: UIView, AmountStrategy {
     var amountSection: AmountPickerModel.AmountSection?
     var validatorStrategy: AmountValidationStrategy?
     var parentVC: UIViewController?

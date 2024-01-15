@@ -36,8 +36,7 @@ class AmountViewController: BaseViewController {
             self.validationView()
         }.store(in: &anyCancellable)
         
-        stateManager.continueButtonPressed.sink {[weak self] pressed in
-            guard let self else { return }
+        stateManager.continueButtonPressed.sink { pressed in
             if pressed {
                 print("continueButtonPressed: \(pressed)")
             }

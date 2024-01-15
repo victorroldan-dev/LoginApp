@@ -45,7 +45,7 @@ class AmountPickerViewModel{
         
         switch StrategiesName(rawValue: header.strategy ?? "") {
         case .titleCollector:
-            headerStrategy = HeaderBasicStrategy(
+            headerStrategy = HeaderBasic(
                 headerSection: header,
                 validatorStrategy: HeaderValidationBasic())
         
@@ -59,7 +59,7 @@ class AmountPickerViewModel{
         
         switch StrategiesName(rawValue: amountSection.strategy ?? "") {
         case .basic:
-            amountStrategy = AmountBasicStrategy(amountSection: amountSection,
+            amountStrategy = AmountBasic(amountSection: amountSection,
                                                  validatorStrategy: AmountValidationBasic(amountSection: amountSection))
         default:
             print("no strategies")
@@ -74,11 +74,11 @@ class AmountPickerViewModel{
         switch StrategiesName(rawValue: footer.strategy ?? ""){
             
         case .dropdownButton:
-            footerStrategy = FooterDropdowAndButtonStrategy(footerSection: footer,
+            footerStrategy = FooterDropdowAndButton(footerSection: footer,
                                                             validatorStrategy: FooterValidationDropdownAndButton())
             
         case .descriptionButton:
-            footerStrategy = FooterDescriptionAndButtonStrategy(footerSection: footer,
+            footerStrategy = FooterDescriptionAndButton(footerSection: footer,
                                                                 validatorStrategy: FooterValidationDescriptionAndButton())
             /*
         case .footerOnlyButton:

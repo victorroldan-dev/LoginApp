@@ -1,5 +1,5 @@
 //
-//  FooterDescriptionAndButtonStrategy.swift
+//  FooterDescriptionAndButton.swift
 //  LoginApp
 //
 //  Created by Victor Roldan on 11/01/24.
@@ -20,7 +20,7 @@ protocol FooterViewStrategy: UIView {
     init(footerSection: AmountPickerModel.FooterSection?, validatorStrategy: FooterValidationStrategy?)
 }
 
-class FooterDescriptionAndButtonStrategy: UIView, FooterViewStrategy{
+class FooterDescriptionAndButton: UIView, FooterViewStrategy{
     var footerSection: AmountPickerModel.FooterSection?
     var validatorStrategy: FooterValidationStrategy?
     weak var parentVC: UIViewController?

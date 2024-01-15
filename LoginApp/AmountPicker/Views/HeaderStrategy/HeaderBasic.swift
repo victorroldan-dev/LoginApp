@@ -1,5 +1,5 @@
 //
-//  HeaderBasicStrategy.swift
+//  HeaderBasic.swift
 //  LoginApp
 //
 //  Created by Victor Roldan on 10/01/24.
@@ -18,7 +18,7 @@ protocol HeaderStrategy: UIView {
          validatorStrategy: HeaderValidationStrategy?)
 }
 
-class HeaderBasicStrategy: UIView, HeaderStrategy{
+class HeaderBasic: UIView, HeaderStrategy{
     weak var parentVC: UIViewController?
     var validatorStrategy: HeaderValidationStrategy?
     var headerSection: AmountPickerModel.HeaderSection?
@@ -129,7 +129,7 @@ class HeaderBasicStrategy: UIView, HeaderStrategy{
     }
 }
 
-extension HeaderBasicStrategy{
+extension HeaderBasic{
     private func configLocalConstraints(){
         addSubview(headerStackView)
         

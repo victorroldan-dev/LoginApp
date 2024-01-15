@@ -1,5 +1,5 @@
 //
-//  FooterDropdowAndButtonStrategy.swift
+//  FooterDropdowAndButton.swift
 //  LoginApp
 //
 //  Created by Victor Roldan on 11/01/24.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class FooterDropdowAndButtonStrategy: UIView, FooterViewStrategy{
+class FooterDropdowAndButton: UIView, FooterViewStrategy{
     var footerSection: AmountPickerModel.FooterSection?
     var validatorStrategy: FooterValidationStrategy?
     weak var parentVC: UIViewController?
